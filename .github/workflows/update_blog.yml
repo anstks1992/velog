@@ -3,9 +3,9 @@ name: Update Blog Posts
 on:
   push:
     branches:
-      - master # 또는 워크플로우를 트리거하고 싶은 브랜치 이름
+      - master # 또는 워크플로우를 트리거하고 싶은 브랜치 이름1
   schedule:
-    - cron: "* * * * *" # 1분마다
+    - cron: "* * * * *" # 매일 자정에 실행
 
 jobs:
   update_blog:
@@ -17,8 +17,8 @@ jobs:
 
       - name: Push changes
         run: |
-          git config --global user.name 'github-actions[bot]'
-          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git config --global user.name 'HongChan'
+          git config --global user.email 'anstks1992329@gmail.com'
           git push https://${{ secrets.GH_PAT }}@github.com/anstks1992/velog.git
 
       - name: Set up Python
