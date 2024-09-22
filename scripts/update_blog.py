@@ -28,14 +28,16 @@ for entry in feed.entries:
     file_name = entry.title
     file_name = file_name.replace('/', '-')  # 슬래시를 대시로 대체
     file_name = file_name.replace('\\', '-')  # 백슬래시를 대시로 대체
-    # 필요에 따라 추가 문자 대체
     file_name += '.md'
     file_path = os.path.join(posts_dir, file_name)
+
+    # 글 내용 가져오기 (description이 없으면 summary 사용)
+    content = getattr(entry, 'description', None) or getattr(entry, 'summary', 'No content available')
 
     # 파일이 이미 존재하지 않으면 생성
     if not os.path.exists(file_path):
         with open(file_path, 'w', encoding='utf-8') as file:
-            file.write(entry.description)  # 글 내용을 파일에 작성
+            file.write(content)  # 글 내용을 파일에 작성
 
         # 깃허브 커밋
         repo.git.add(file_path)
@@ -43,3 +45,25 @@ for entry in feed.entries:
 
 # 변경 사항을 깃허브에 푸시
 repo.git.push()
+
+# # 각 글을 파일로 저장하고 커밋
+# for entry in feed.entries:
+#     # 파일 이름에서 유효하지 않은 문자 제거 또는 대체
+#     file_name = entry.title
+#     file_name = file_name.replace('/', '-')  # 슬래시를 대시로 대체
+#     file_name = file_name.replace('\\', '-')  # 백슬래시를 대시로 대체
+#     # 필요에 따라 추가 문자 대체
+#     file_name += '.md'
+#     file_path = os.path.join(posts_dir, file_name)
+
+#     # 파일이 이미 존재하지 않으면 생성
+#     if not os.path.exists(file_path):
+#         with open(file_path, 'w', encoding='utf-8') as file:
+#             file.write(entry.description)  # 글 내용을 파일에 작성
+
+#         # 깃허브 커밋
+#         repo.git.add(file_path)
+#         repo.git.commit('-m', f'Add post: {entry.title}')
+
+# # 변경 사항을 깃허브에 푸시
+# repo.git.push()
