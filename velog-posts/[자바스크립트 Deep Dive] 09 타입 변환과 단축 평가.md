@@ -1,3 +1,4 @@
+<p><img alt="" src="https://velog.velcdn.com/images/anstks1992/post/920d52bd-b9d3-4153-b5b2-8cb84abc6a65/image.png" /></p>
 <h2 id="09-타입-변환과-단축평가">09. 타입 변환과 단축평가</h2>
 <hr />
 <h3 id="91-타입-변환이란">9.1 타입 변환이란?</h3>
