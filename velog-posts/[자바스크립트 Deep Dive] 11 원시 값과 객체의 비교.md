@@ -1,3 +1,4 @@
+<p><img alt="" src="https://velog.velcdn.com/images/anstks1992/post/cb62735a-208a-4d89-8dc3-df50b4bd52a8/image.png" /></p>
 <h2 id="11-원시-값과-객체의-비교">11. 원시 값과 객체의 비교</h2>
 <hr />
 <blockquote>

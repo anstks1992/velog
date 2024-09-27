@@ -1,3 +1,4 @@
+<p><img alt="" src="https://velog.velcdn.com/images/anstks1992/post/6693728d-57d3-4afe-bb4a-a23b56f5dc9b/image.png" /></p>
 <h2 id="17-생성자-함수에-의한-객체-생성">17. 생성자 함수에 의한 객체 생성</h2>
 <hr />
 <h3 id="171-object-성성자-함수">17.1 Object 성성자 함수</h3>

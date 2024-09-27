@@ -1,3 +1,4 @@
+<p><img alt="" src="https://velog.velcdn.com/images/anstks1992/post/ffa33a13-8875-4d65-86b7-e8954dfdbc9d/image.png" /></p>
 <h2 id="15-letconst-키워드와-블록-레벨-스코프">15. let,const 키워드와 블록 레벨 스코프</h2>
 <hr />
 <h3 id="151-var-키워드로-선언한-변수의-문제점">15.1 var 키워드로 선언한 변수의 문제점</h3>

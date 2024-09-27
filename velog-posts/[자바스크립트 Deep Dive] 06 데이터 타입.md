@@ -1,3 +1,4 @@
+<p><img alt="" src="https://velog.velcdn.com/images/anstks1992/post/3abc6f22-d65d-4143-a10d-9555588b1fa7/image.png" /></p>
 <h2 id="06-데이터-타입">06. 데이터 타입</h2>
 <hr />
 <blockquote>

@@ -1,3 +1,4 @@
+<p><img alt="" src="https://velog.velcdn.com/images/anstks1992/post/45c1c24f-2475-4b3e-b7ea-1eb4f64a4674/image.png" /></p>
 <p>HTTP (HyperText Transfer Protocol)와 HTTPS (HyperText Transfer Protocol Secure)는 웹에서 정보를 주고받기 위한 프로토콜이다.</p>
 <h2 id="http-hypertext-transfer-protocol">HTTP (HyperText Transfer Protocol)</h2>
 <ul>

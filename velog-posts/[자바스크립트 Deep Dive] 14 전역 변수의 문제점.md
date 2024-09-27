@@ -1,3 +1,4 @@
+<p><img alt="" src="https://velog.velcdn.com/images/anstks1992/post/44ec9529-0073-4e60-9fee-8c4a51965b1d/image.png" /></p>
 <h2 id="14-전역-변수의-문제점">14. 전역 변수의 문제점</h2>
 <hr />
 <h3 id="141-변수의-생명-주기">14.1 변수의 생명 주기</h3>

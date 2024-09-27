@@ -1,3 +1,4 @@
+<p><img alt="" src="https://velog.velcdn.com/images/anstks1992/post/fb5eadca-aaaf-4148-b4da-337345358c0f/image.png" /></p>
 <h2 id="07연산자">07.연산자</h2>
 <hr />
 <pre><code class="language-js">// 산술 연산자

@@ -1,3 +1,4 @@
+<p><img alt="" src="https://velog.velcdn.com/images/anstks1992/post/d5b42d54-393a-4ec1-83df-18588484e4c8/image.png" /></p>
 <h2 id="05-표현식과-문">05. 표현식과 문</h2>
 <hr />
 <h3 id="51-값">5.1 값</h3>
