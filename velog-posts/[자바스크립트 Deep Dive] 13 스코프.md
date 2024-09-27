@@ -1,3 +1,4 @@
+<p><img alt="" src="https://velog.velcdn.com/images/anstks1992/post/3f8d9dfc-2d72-4d2d-ab8c-6f9b27ef0c35/image.png" /></p>
 <h2 id="13-스코프">13. 스코프</h2>
 <hr />
 <h3 id="131-스코프란">13.1 스코프란?</h3>
