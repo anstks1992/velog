@@ -1,3 +1,4 @@
+<p><img alt="" src="https://velog.velcdn.com/images/anstks1992/post/eca42fe7-df1a-46ef-b3ee-38f43d9ee6a1/image.png" /></p>
 <h2 id="10-객체-리터럴">10. 객체 리터럴</h2>
 <hr />
 <h3 id="101-객체란">10.1 객체란?</h3>
