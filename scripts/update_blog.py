@@ -3,7 +3,6 @@ import git # type: ignore
 import os
 
 # 벨로그 RSS 피드 URL
-# example : rss_url = 'https://api.velog.io/rss/@soozi'
 rss_url = 'https://api.velog.io/rss/@anstks1992'
 
 # 깃허브 레포지토리 경로
@@ -34,36 +33,24 @@ for entry in feed.entries:
     # 글 내용 가져오기 (description이 없으면 summary 사용)
     content = getattr(entry, 'description', None) or getattr(entry, 'summary', 'No content available')
 
-    # 파일이 이미 존재하지 않으면 생성
-    if not os.path.exists(file_path):
+    # 파일이 이미 존재하는 경우, 수정 여부를 확인
+    if os.path.exists(file_path):
+        with open(file_path, 'r', encoding='utf-8') as file:
+            existing_content = file.read()
+        # 파일 내용이 다르면 업데이트
+        if existing_content != content:
+            with open(file_path, 'w', encoding='utf-8') as file:
+                file.write(content)
+            # 깃허브 커밋 (수정된 경우)
+            repo.git.add(file_path)
+            repo.git.commit('-m', f'Update post: {entry.title}')
+    else:
+        # 파일이 없으면 새로 생성
         with open(file_path, 'w', encoding='utf-8') as file:
-            file.write(content)  # 글 내용을 파일에 작성
-
-        # 깃허브 커밋
+            file.write(content)
+        # 깃허브 커밋 (새로 생성된 경우)
         repo.git.add(file_path)
         repo.git.commit('-m', f'Add post: {entry.title}')
 
 # 변경 사항을 깃허브에 푸시
 repo.git.push()
-
-# # 각 글을 파일로 저장하고 커밋
-# for entry in feed.entries:
-#     # 파일 이름에서 유효하지 않은 문자 제거 또는 대체
-#     file_name = entry.title
-#     file_name = file_name.replace('/', '-')  # 슬래시를 대시로 대체
-#     file_name = file_name.replace('\\', '-')  # 백슬래시를 대시로 대체
-#     # 필요에 따라 추가 문자 대체
-#     file_name += '.md'
-#     file_path = os.path.join(posts_dir, file_name)
-
-#     # 파일이 이미 존재하지 않으면 생성
-#     if not os.path.exists(file_path):
-#         with open(file_path, 'w', encoding='utf-8') as file:
-#             file.write(entry.description)  # 글 내용을 파일에 작성
-
-#         # 깃허브 커밋
-#         repo.git.add(file_path)
-#         repo.git.commit('-m', f'Add post: {entry.title}')
-
-# # 변경 사항을 깃허브에 푸시
-# repo.git.push()
