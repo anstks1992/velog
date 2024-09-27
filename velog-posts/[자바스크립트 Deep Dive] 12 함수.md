@@ -1,3 +1,4 @@
+<p><img alt="" src="https://velog.velcdn.com/images/anstks1992/post/3688ffea-a398-4aee-a0a6-6f166ea75fab/image.png" /></p>
 <h2 id="12-함수">12. 함수</h2>
 <hr />
 <h3 id="121-함수란">12.1 함수란</h3>
@@ -250,3 +251,222 @@ console.log(add(2)); // NaN
 }
 
 console.log(add(2, 5, 10)); // 7</code></pre>
+<h4 id="1252-인수-확인">12.5.2 인수 확인</h4>
+<h5 id="자바스크립트-함수는-매개변수와-인수의-개수가-일하는지-확인하지-않는다-따라서-적절한-인수가-전달되었는지-확인할-필요가-있다">자바스크립트 함수는 매개변수와 인수의 개수가 일하는지 확인하지 않는다. 따라서 적절한 인수가 전달되었는지 확인할 필요가 있다.</h5>
+<pre><code class="language-js">function add(x, y) {
+  if (typeof x !== 'number' || typeof y !== 'number') {
+    // 매개변수를 통해 전달된 인수의 타입이 부적절한 경우 에러를 발생시킨다.
+    throw new TypeError('인수는 모두 숫자 값이어야 합니다.');
+  }
+
+  return x + y;
+}
+
+console.log(add(2));        // TypeError: 인수는 모두 숫자 값이어야 합니다.
+console.log(add('a', 'b')); // TypeError: 인수는 모두 숫자 값이어야 합니다.</code></pre>
+<h4 id="1253-매개변수의-최대-개수">12.5.3 매개변수의 최대 개수</h4>
+<blockquote>
+<p>매개변수의 최대 개수에 대해 명시적으로 제한하고 있지 않지만 이상적인 함수는 한가지 일만 해야 되는게 이상적이며 최대 3개 이상을 넘지 않는 것을 권장한다.</p>
+</blockquote>
+<h4 id="1254-반환문">12.5.4 반환문</h4>
+<h5 id="함수-호출은-표현식을-사용하며-return-키워드를-이용한다">함수 호출은 표현식을 사용하며 return 키워드를 이용한다.</h5>
+<pre><code class="language-js">function multiply(x, y) {
+  return x * y; // 반환문
+}
+
+// 함수 호출은 반환값으로 평가된다.
+var result = multiply(3, 5);
+console.log(result); // 15</code></pre>
+<h5 id="반환문은-반환문-이후의-다른-문이-존재하면-함수의-실행을-중단하고-함수-몸체를-빠져나간다">반환문은 반환문 이후의 다른 문이 존재하면 함수의 실행을 중단하고 함수 몸체를 빠져나간다.</h5>
+<pre><code class="language-js">function multiply(x, y) {
+  return x * y; // 반환문
+  // 반환문 이후에 다른 문이 존재하면 그 문은 실행되지 않고 무시된다.
+  console.log('실행되지 않는다.'); //실행 안됨
+}
+
+console.log(multiply(3, 5)); // 15</code></pre>
+<h5 id="return-뒤에-오는-표현식을-평가해-반환한다-없으면-undefined가-반환된다">return 뒤에 오는 표현식을 평가해 반환한다. 없으면 undefined가 반환된다.</h5>
+<pre><code class="language-js">function foo () {
+  return;
+}
+
+console.log(foo()); // undefined</code></pre>
+<h5 id="반환문은-생략할-수-있다-생략시-undefined를-반환한다">반환문은 생략할 수 있다. 생략시 undefined를 반환한다.</h5>
+<pre><code class="language-js">function foo () {
+  return;
+}
+
+console.log(foo()); // undefined</code></pre>
+<h5 id="반환문은-함수-몸체-내부에서만-사용할-수-있다">반환문은 함수 몸체 내부에서만 사용할 수 있다.</h5>
+<h3 id="126-참조에-의한-전달과-외부-상태의-변경">12.6 참조에 의한 전달과 외부 상태의 변경</h3>
+<h5 id="원시타입은-변경-불가능이기-때문에-재할당을-통해-원본의-훼손없이-교체되었고-객체는-변경-가능하기-때문에-재할당-대신-직접-교체를-해-원본의-훼손이-발생한다">원시타입은 변경 불가능이기 때문에 재할당을 통해 원본의 훼손없이 교체되었고 객체는 변경 가능하기 때문에 재할당 대신 직접 교체를 해 원본의 훼손이 발생한다.</h5>
+<pre><code class="language-js">// 매개변수 primitive는 원시 값을 전달받고, 매개변수 obj는 객체를 전달받는다.
+function changeVal(primitive, obj) {
+  primitive += 100;
+  obj.name = 'Kim';
+}
+
+// 외부 상태
+var num = 100;
+var person = { name: 'Lee' };
+
+console.log(num); // 100
+console.log(person); // {name: &quot;Lee&quot;}
+
+// 원시 값은 값 자체가 복사되어 전달되고 객체는 참조 값이 복사되어 전달된다.
+changeVal(num, person);
+
+// 원시 값은 원본이 훼손되지 않는다.
+console.log(num); // 100
+
+// 객체는 원본이 훼손된다.
+console.log(person); // {name: &quot;Kim&quot;}</code></pre>
+<h5 id="함수가-외부상태를-변경하면-변화를-추적하기-어렵고-코드의-복잡성-증가와-가독성을-해치는-원인이-된다-이러한-문제의-해결-방법중-하나는-객체를-불변-객체로-만들어-사용하는-것이다">함수가 외부상태를 변경하면 변화를 추적하기 어렵고 코드의 복잡성 증가와 가독성을 해치는 원인이 된다. 이러한 문제의 해결 방법중 하나는 객체를 불변 객체로 만들어 사용하는 것이다.</h5>
+<h3 id="127-다양한-함수의-형태">12.7 다양한 함수의 형태</h3>
+<h4 id="1271-즉시-실행-함수">12.7.1 즉시 실행 함수</h4>
+<h5 id="함수-정의와-동시에-단-한번만-호출되는-함수를-즉시-실행-함수라고-한다">함수 정의와 동시에 단 한번만 호출되는 함수를 즉시 실행 함수라고 한다.</h5>
+<pre><code class="language-js">// 익명 즉시 실행 함수
+(function () {
+  var a = 3;
+  var b = 5;
+  return a * b;
+}());
+
+console.log(res); // 15
+
+// 즉시 실행 함수에도 일반 함수처럼 인수를 전달할 수 있다.
+res = (function (a, b) {
+  return a * b;
+}(3, 5));
+
+console.log(res); // 15</code></pre>
+<h4 id="1772-재귀함수">17.7.2 재귀함수</h4>
+<h5 id="함수가-자기-자신을-호출하는-것을-재귀-호출이라-한다-주로-반복되는-처리를-위해-사용한다">함수가 자기 자신을 호출하는 것을 재귀 호출이라 한다. 주로 반복되는 처리를 위해 사용한다.</h5>
+<pre><code class="language-js">//반복문
+function countdown(n) {
+  for (var i = n; i &gt;= 0; i--) console.log(i);
+}
+
+countdown(10);
+
+//반목문 없이 재귀함수
+function countdown(n) {
+  if (n &lt; 0) return;
+  console.log(n);
+  countdown(n - 1); // 재귀 호출
+}
+
+countdown(10);</code></pre>
+<h5 id="재귀함수는-재귀호출을-멈출-수-없는-탈출-조건이-없으면-무한-반복에-빠질-위험이-있고-스택-오버플로-에러가-발생할-수있다-따라서-반복문을-사용하는-것을-권장한다">재귀함수는 재귀호출을 멈출 수 없는 탈출 조건이 없으면 무한 반복에 빠질 위험이 있고 스택 오버플로 에러가 발생할 수있다. 따라서 반복문을 사용하는 것을 권장한다.</h5>
+<h4 id="1273-중첩-함수">12.7.3 중첩 함수</h4>
+<h5 id="함수-내부에-정의된-함수를-중첩함수-또는-내부함수라-한다일반적으로-중첩-함수는-자신을-포함하는-외부-함수를-돕는-헬퍼-함수의-역할만-한다">함수 내부에 정의된 함수를 중첩함수 또는 내부함수라 한다.일반적으로 중첩 함수는 자신을 포함하는 외부 함수를 돕는 헬퍼 함수의 역할만 한다.</h5>
+<pre><code class="language-js">function outer() {
+  var x = 1;
+
+  // 중첩 함수
+  function inner() {
+    var y = 2;
+    // 외부 함수의 변수를 참조할 수 있다.
+    console.log(x + y); // 3
+  }
+
+  inner();
+}
+
+outer();</code></pre>
+<h4 id="1274-콜백-함수">12.7.4 콜백 함수</h4>
+<blockquote>
+<p>함수의 매개변수를 통해 다른 함수의 내부로 전달되는 함수를 콜백함수라 하며, 매개변수를 통해 함수의 외부에서 콜백 함수를 전달받은 함수를 고차 함수라고 한다.</p>
+</blockquote>
+<pre><code class="language-js">// 외부에서 전달받은 f를 n만큼 반복 호출한다.
+function repeat(n, f) { //고차함수
+  for (var i = 0; i &lt; n; i++) {
+    f(i); // i를 전달하면서 f를 호출
+  }
+}
+
+var logAll = function (i) { //콜백함수
+  console.log(i);
+};
+
+// 반복 호출할 함수를 인수로 전달한다.
+repeat(5, logAll); // 0 1 2 3 4
+
+var logOdds = function (i) { //콜백함수
+  if (i % 2) console.log(i);
+};
+
+// 반복 호출할 함수를 인수로 전달한다.
+repeat(5, logOdds); // 1 3</code></pre>
+<blockquote>
+<p>고차 함수는 매개변수를 통해 전달받은 콜백 함수의 호출 시점을 결정해서 호출한다. 다시 말해 콜백 함수는 고차 함수에 의해 호출되며 이때 고차 함수는 필요에 따라 콜백 함수에 인수를 전달할 수 있다.</p>
+</blockquote>
+<pre><code class="language-js">// 익명 함수 리터럴을 콜백 함수로 고차 함수에 전달한다.
+// 익명 함수 리터럴은 repeat 함수를 호출할 때마다 평가되어 함수 객체를 생성한다.
+repeat(5, function (i) {
+  if (i % 2) console.log(i);
+}); // 1 3</code></pre>
+<h5 id="이-외에도-콜백-함수는-비동기처리-고차함수등에서-사용된다">이 외에도 콜백 함수는 비동기처리, 고차함수등에서 사용된다.</h5>
+<pre><code class="language-js">// 콜백 함수를 사용한 이벤트 처리
+// myButton 버튼을 클릭하면 콜백 함수를 실행한다.
+document.getElementById('myButton').addEventListener('click', function () {
+  console.log('button clicked!');
+});
+
+// 콜백 함수를 사용한 비동기 처리
+// 1초 후에 메시지를 출력한다.
+setTimeout(function () {
+  console.log('1초 경과');
+}, 1000);</code></pre>
+<pre><code class="language-js">// 콜백 함수를 사용하는 고차 함수 map
+var res = [1, 2, 3].map(function (item) {
+  return item * 2;
+});
+
+console.log(res); // [2, 4, 6]
+
+// 콜백 함수를 사용하는 고차 함수 filter
+res = [1, 2, 3].filter(function (item) {
+  return item % 2;
+});
+
+console.log(res); // [1, 3]
+
+// 콜백 함수를 사용하는 고차 함수 reduce
+res = [1, 2, 3].reduce(function (acc, cur) {
+  return acc + cur;
+}, 0);
+
+console.log(res); // 6</code></pre>
+<h4 id="1275-순수-함수와-비순수-함수">12.7.5 순수 함수와 비순수 함수</h4>
+<h5 id="순수-함수는-어떤-외부-상태에-의존하지도-않고-변경되는도-않는-최소-하나-이상의-인수를-전달-받아-언제나-동일한-값을-반환하는-함수다">순수 함수는 어떤 외부 상태에 의존하지도 않고 변경되는도 않는 최소 하나 이상의 인수를 전달 받아 언제나 동일한 값을 반환하는 함수다.</h5>
+<pre><code class="language-js">var count = 0; // 현재 카운트를 나타내는 상태
+
+// 순수 함수 increase는 동일한 인수가 전달되면 언제나 동일한 값을 반환한다.
+function increase(n) {
+  return ++n;
+}
+
+// 순수 함수가 반환한 결과값을 변수에 재할당해서 상태를 변경
+count = increase(count);
+console.log(count); // 1
+
+count = increase(count);
+console.log(count); // 2</code></pre>
+<h5 id="비순수-함수는-외부-상태에-의존하거나-외부-상태를-변경하는-함수다">비순수 함수는 외부 상태에 의존하거나 외부 상태를 변경하는 함수다.</h5>
+<pre><code class="language-js">var count = 0; // 현재 카운트를 나타내는 상태: increase 함수에 의해 변화한다.
+
+// 비순수 함수
+function increase() {
+  return ++count; // 외부 상태에 의존하며 외부 상태를 변경한다.
+}
+
+// 비순수 함수는 외부 상태(count)를 변경하므로 상태 변화를 추적하기 어려워진다.
+increase();
+console.log(count); // 1
+
+increase();
+console.log(count); // 2</code></pre>
+<h3 id="📄-reference">📄 Reference</h3>
+<p>자바스크립트 Deep Dive
+<a href="https://github.com/wikibook/mjs/blob/master/12.md">wikibooks</a></p>
