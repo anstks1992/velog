@@ -1,3 +1,4 @@
+<p><img alt="" src="https://velog.velcdn.com/images/anstks1992/post/25ae2628-cbd3-4b42-b537-a5f49e9116c0/image.png" /></p>
 <h2 id="16-프로퍼티-어트리뷰트">16. 프로퍼티 어트리뷰트</h2>
 <hr />
 <h3 id="161-내부-슬롯과-내부-메서드">16.1 내부 슬롯과 내부 메서드</h3>
